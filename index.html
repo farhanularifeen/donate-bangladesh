@@ -1,34 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DONATE BANGLADESH</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <script defer src="app.js"></script> <!-- JavaScript file -->
-</head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <script defer src="app.js"></script>
+    <!-- JavaScript file -->
+  </head>
 
-<body class="bg-gray-100">
+  <body class="bg-gray-100">
+    <!-- Navbar -->
+    <nav
+      class="sticky top-0 z-10 bg-white bg-opacity-90 backdrop-blur-md shadow-lg"
+    >
+      <div
+        class="container mx-auto px-4 py-3 flex justify-between items-center"
+      >
+        <button
+          id="blogButton"
+          class="text-black-600 border-2 border-orange-600 px-6 py-1 rounded hover:bg-blue-600 hover:text-white transition"
+        >
+          Blog
+        </button>
 
-  <!-- Navbar -->
-  <nav class="sticky top-0 z-10 bg-white bg-opacity-90 backdrop-blur-md shadow-lg">
-    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+        <div class="flex items-center">
+          <img src="img/logo.png" alt="Logo" class="w-8 h-8 mr-2" />
+          <h1 class="text-xl font-bold">DONATE BANGLADESH</h1>
+        </div>
 
-      <button id="blogButton" class="text-black-600 border-2 border-orange-600 px-6 py-1 rounded hover:bg-blue-600 hover:text-white transition">Blog</button>
-
-      <div class="flex items-center">
-        <img src="img/logo.png" alt="Logo" class="w-8 h-8 mr-2">
-        <h1 class="text-xl font-bold">DONATE BANGLADESH</h1>
+        <div class="flex items-center">
+          <span id="balance" class="text-black-600 mr-2">BDT 50000</span>
+          <img src="img/coin.png" alt="Coin Icon" class="w-5 h-5" />
+        </div>
       </div>
+    </nav>
 
-      <div class="flex items-center">
-        <span id="balance" class="text-black-600 mr-2">BDT 50000</span>
-        <img src="img/coin.png" alt="Coin Icon" class="w-5 h-5">
-      </div>
-      
-    </div>
-  </nav>
-  
-</body>
-
+    <!-- Banner Section -->
+    <section class="flex justify-center my-6">
+      <button
+        id="donationButton"
+        class="bg-blue-500 text-white border-2 border-blue-500 py-2 px-6 mx-2 rounded hover:bg-blue-600 hover:border-blue-600 transition"
+      >
+        Donation
+      </button>
+      <button
+        id="historyButton"
+        class="bg-gray-100 text-blue border-2 border-blue-500 py-2 px-6 mx-2 rounded hover:bg-gray-400 hover:border-gray-400 transition"
+      >
+        History
+      </button>
+    </section>
+  </body>
 </html>
