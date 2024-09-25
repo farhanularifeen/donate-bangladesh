@@ -1,36 +1,67 @@
 // Initial balance
 let balance = 50000;
+let donationHistory = [];
 
-// Function to handle donation
-function handleDonation(cardId, inputId, currentAmountId) {
-  const donationInput = document.getElementById(inputId).value;
-  const currentAmountElement = document.getElementById(currentAmountId);
-  const currentAmount = parseInt(currentAmountElement.textContent.split(' ')[1]);
+function handleDonation(cardId, inputId, currentAmountId, donationName) {
+    const donationInput = document.getElementById(inputId).value;
+    const currentAmountElement = document.getElementById(currentAmountId);
+    const currentAmount = parseInt(currentAmountElement.textContent.split(' ')[1]);
 
-  // Validate the donation amount
-  if (isNaN(donationInput) || donationInput <= 0 || donationInput === "" || donationInput > balance) {
-    alert("Invalid input or insufficient balance!");
-  } else {
-    // Deduct from account balance
-    balance -= parseInt(donationInput);
-    document.getElementById('balance').textContent = `BDT ${balance}`;
+    if (isNaN(donationInput) || donationInput <= 0 || donationInput === "" || donationInput > balance) {
+        alert("Invalid input or insufficient balance!");
+    } else {
+        balance -= parseInt(donationInput);
+        document.getElementById('balance').textContent = `BDT ${balance}`;
 
-    // Update the card's current donation amount
-    const updatedAmount = currentAmount + parseInt(donationInput);
-    currentAmountElement.textContent = `BDT ${updatedAmount}`;
+        const updatedAmount = currentAmount + parseInt(donationInput);
+        currentAmountElement.textContent = `BDT ${updatedAmount}`;
 
-    // Add a success notification
-    alert(`Congratulations! You have donated successfully: ${donationInput} BDT`);
-  }
+        // Add transaction to history
+        const now = new Date();
+        const transactionTime = now.toLocaleString();
+        donationHistory.push({
+            time: transactionTime,
+            amount: donationInput,
+            name: donationName,
+        });
+
+        alert(`Congratulations! You have donated successfully: ${donationInput} BDT`);
+    }
 }
 
-// Attach event listeners for each donation button
-document.getElementById('donateNow1').addEventListener('click', function() {
-  handleDonation(1, 'donationAmount1', 'currentAmount1');
+document.getElementById('donateNow1').addEventListener('click', function () {
+    handleDonation(1, 'donationAmount1', 'currentAmount1', "Flood at Noakhali");
+    displayHistory();
 });
-document.getElementById('donateNow2').addEventListener('click', function() {
-  handleDonation(2, 'donationAmount2', 'currentAmount2');
+document.getElementById('donateNow2').addEventListener('click', function () {
+    handleDonation(2, 'donationAmount2', 'currentAmount2', "Injured Protestors Crisis");
+    displayHistory();
 });
-document.getElementById('donateNow3').addEventListener('click', function() {
-  handleDonation(3, 'donationAmount3', 'currentAmount3');
+document.getElementById('donateNow3').addEventListener('click', function () {
+    handleDonation(3, 'donationAmount3', 'currentAmount3', "Cyclone Victims");
+    displayHistory();
+});
+
+// Display Donation History
+function displayHistory() {
+    const historyContainer = document.getElementById('historyContainer');
+    historyContainer.innerHTML = ''; // Clear existing history
+    donationHistory.forEach((transaction) => {
+        const historyEntry = document.createElement('div');
+        historyEntry.className = 'bg-white p-4 rounded shadow';
+        historyEntry.innerHTML = `<strong>${transaction.time}</strong>: Donated BDT ${transaction.amount} for ${transaction.name}`;
+        historyContainer.appendChild(historyEntry);
+    });
+}
+
+document.getElementById('historyButton').addEventListener('click', function () {
+    document.getElementById('donationSection').classList.add('hidden');
+    document.getElementById('historySection').classList.remove('hidden');
+    document.getElementById('blogButton').classList.remove('hidden');
+});
+
+document.getElementById('donationButton').addEventListener('click', function () {
+    document.getElementById('donationSection').classList.remove('hidden');
+    document.getElementById('historySection').classList.add('hidden');
+    document.getElementById('blogButton').classList.add('hidden');
 });
